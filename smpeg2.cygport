@@ -1,0 +1,44 @@
+NAME="smpeg2"
+VERSION=2.0.0
+RELEASE=1
+CATEGORY="Libs"
+SUMMARY="SDL2 MPEG audio/video library"
+DESCRIPTION="SMPEG is a free MPEG1 video player library with sound support,
+based on SDL.  SMPEG supports MPEG audio (MP3), MPEG-1 video, and MPEG
+system streams."
+HOMEPAGE="https://icculus.org/smpeg/"
+SRC_URI="mirror://gentoo/smpeg-${VERSION}.tar.bz2"
+SRC_DIR="smpeg-${VERSION}"
+PATCH_URI="
+	mirror://portage/media-libs/smpeg2/files/smpeg2-${VERSION}-gcc6.patch
+	mirror://portage/media-libs/smpeg2/files/smpeg2-${VERSION}-smpeg2-config.patch
+	2.0.0-cygwin.patch
+"
+
+PKG_NAMES="libsmpeg2_2.0_0 libsmpeg2-devel"
+libsmpeg2_2_0_0_CONTENTS="
+	usr/bin/cygsmpeg2-2-0-0.dll
+	usr/share/doc/${NAME}/
+"
+libsmpeg2_devel_CONTENTS="
+	usr/bin/smpeg2-config
+	usr/include/
+	usr/lib/libsmpeg2.dll.a
+	usr/share/aclocal/smpeg2.m4
+"
+
+DISTCLEANFILES="acinclude/l*.m4"
+
+ACLOCAL_PATH="acinclude"
+NO_AUTOHEADER=1
+
+CYGCONF_ARGS="
+	--disable-assertions
+	--disable-debug
+	--disable-mmx
+"
+
+src_install() {
+	cd ${B}
+	cyginstall bin_PROGRAMS= man_MANS=
+}
