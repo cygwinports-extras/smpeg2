@@ -20,6 +20,7 @@ libsmpeg2_2_0_0_CONTENTS="
 	usr/bin/cygsmpeg2-2-0-0.dll
 	usr/share/doc/${NAME}/
 "
+libsmpeg2_devel_REQUIRES="libSDL2-devel"
 libsmpeg2_devel_CONTENTS="
 	usr/bin/smpeg2-config
 	usr/include/
